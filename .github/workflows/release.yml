@@ -46,6 +46,11 @@ jobs:
       - name: Test image
         working-directory: .
         run: |
+          echo ">>>>>>>>>>> Inspect Container >>>>>>>>>>>"
+          docker inspect test-container
+          echo ">>>>>>>>>>> Container Logs    >>>>>>>>>>>"
+          docker logs test-container
+          echo ">>>>>>>>>>> Test Container    >>>>>>>>>>>" 
           docker exec --tty test-container env TERM=xterm ansible --version
 
   release:
