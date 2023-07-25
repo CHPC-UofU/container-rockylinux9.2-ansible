@@ -21,6 +21,7 @@ RUN dnf -y install rpm dnf-plugins-core && \
       epel-release \
       hostname \
       initscripts \
+      iproute \
       libyaml \
       python3 \
       python3-pip \
