@@ -41,16 +41,11 @@ jobs:
       - name: Run image
         working-directory: .
         run: |
-          docker run --name test-container -d --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro container-ansible:test
+          docker run --name test-container -d --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:rw --cgroupns=host container-ansible:test
 
       - name: Test image
         working-directory: .
         run: |
-          echo ">>>>>>>>>>> Inspect Container >>>>>>>>>>>"
-          docker inspect test-container
-          echo ">>>>>>>>>>> Container Logs    >>>>>>>>>>>"
-          docker logs test-container
-          echo ">>>>>>>>>>> Test Container    >>>>>>>>>>>" 
           docker exec --tty test-container env TERM=xterm ansible --version
 
   release:
